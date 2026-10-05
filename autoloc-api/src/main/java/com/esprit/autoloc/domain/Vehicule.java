@@ -48,7 +48,7 @@ public class Vehicule {
     @JoinColumn(name = "id_agence")
     private Agence agence;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "vehicule_equipement",
             joinColumns = @JoinColumn(name = "id_vehicule"),
@@ -58,4 +58,11 @@ public class Vehicule {
 
     @OneToMany(mappedBy = "vehicule")
     private List<Reservation> reservations = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "vehicule",
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.LAZY
+    )
+    private List<Maintenance> maintenances = new ArrayList<>();
 }

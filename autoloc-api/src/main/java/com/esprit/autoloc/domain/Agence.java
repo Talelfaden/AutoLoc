@@ -33,9 +33,15 @@ public class Agence {
     @Column(length = 20)
     private String telephone;
 
-    @OneToMany(mappedBy = "agence")
+    @OneToMany(
+            mappedBy = "agence",
+            fetch = FetchType.LAZY
+    )
     private List<Employe> employes = new ArrayList<>();
 
-    @OneToMany(mappedBy = "agence")
+    @OneToMany(
+            mappedBy = "agence",
+            fetch = FetchType.LAZY
+    )
     private List<Vehicule> vehicules = new ArrayList<>();
 }
